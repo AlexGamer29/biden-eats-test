@@ -19,10 +19,7 @@ export default function Login({ navigation }) {
     useEffect(() => {
         const unsubscribe = auth.onAuthStateChanged(user => {
             if (user) {
-                navigation.reset({
-                    index: 0,
-                    routes: [{ name: 'Home' }],
-                })
+                navigation.navigate("MainContainer")
             }
         })
 
@@ -62,7 +59,7 @@ export default function Login({ navigation }) {
 
     return (
         <Background>
-            <Header>Sign in to BidenCrypto</Header>
+            <Header>Sign in to BidenEats</Header>
             <TextInput
                 label="Email"
                 returnKeyType="next"
@@ -86,7 +83,7 @@ export default function Login({ navigation }) {
             />
             <View style={styles.forgotPassword}>
                 <TouchableOpacity
-                    onPress={() => navigation.navigate('ResetPasswordScreen')}
+                    onPress={() => navigation.navigate('Auth', { screen: 'ResetPassword' })}
                 >
                     <Text style={styles.forgot}>Forgot your password?</Text>
                 </TouchableOpacity>

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { View, Text, SafeAreaView, ScrollView } from "react-native";
+import { View, SafeAreaView, ScrollView } from "react-native";
 import { Divider } from "react-native-elements";
-import BottomTabs from "../components/home/BottomTabs";
+// import BottomTabs from "../components/home/BottomTabs";
 import Categories from "../components/home/Categories";
 import HeaderTabs from "../components/home/HeaderTabs";
 import RestaurantItems, {
@@ -55,9 +55,9 @@ export default function Home({ navigation }) {
         />
       </ScrollView>
       <Divider width={1} />
-      <BottomTabs
+      {/* <BottomTabs
         navigation={navigation}
-      />
+      /> */}
     </SafeAreaView>
   );
 }

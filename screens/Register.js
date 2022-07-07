@@ -31,6 +31,7 @@ export default function Register({ navigation }) {
             return
         } else {
             handleRegister(email.value, password.value)
+            navigation.navigate('Auth', { screen: 'Login' })
         }
 
         // navigation.reset({
@@ -57,7 +58,7 @@ export default function Register({ navigation }) {
         <Background>
             {/* <BackButton goBack={navigation.goBack} /> */}
 
-            <Header>Create Account</Header>
+            <Header>Create an account</Header>
             {/* <TextInput
                 label="Name"
                 returnKeyType="next"

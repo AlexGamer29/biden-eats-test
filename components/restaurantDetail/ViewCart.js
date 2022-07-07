@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { View, Text, TouchableOpacity, Modal, StyleSheet } from "react-native";
 import { useSelector } from "react-redux";
 import OrderItem from "./OrderItem";
-import firebase from "../../firebase";
+import firebase, { auth } from "../../firebase";
 import LottieView from "lottie-react-native";
 
 export default function ViewCart({ navigation }) {
@@ -27,6 +27,10 @@ export default function ViewCart({ navigation }) {
     const db = firebase.firestore();
     db.collection("orders")
       .add({
+        user: {
+          _id: auth.currentUser?.uid,
+          email: auth.currentUser?.email,
+        },
         items: items,
         restaurantName: restaurantName,
         createdAt: firebase.firestore.FieldValue.serverTimestamp(),
@@ -34,9 +38,10 @@ export default function ViewCart({ navigation }) {
       .then(() => {
         setTimeout(() => {
           setLoading(false);
-          navigation.navigate("OrderCompleted");
+          navigation.navigate('MainContainer', { screen: 'OrderCompleted' });
         }, 2500);
       });
+
   };
 
   const styles = StyleSheet.create({
@@ -91,7 +96,7 @@ export default function ViewCart({ navigation }) {
               <TouchableOpacity
                 style={{
                   marginTop: 20,
-                  backgroundColor: "black",
+                  backgroundColor: "blue",
                   alignItems: "center",
                   padding: 13,
                   borderRadius: 30,
@@ -137,7 +142,7 @@ export default function ViewCart({ navigation }) {
         <TouchableOpacity
           activeOpacity={0.5}
           style={{
-            backgroundColor: "black",
+            backgroundColor: "blue",
             flexDirection: "row",
             justifyContent: "flex-end",
             marginHorizontal: 35,
@@ -149,10 +154,10 @@ export default function ViewCart({ navigation }) {
           }}
           onPress={() => setModalVisible(true)}
         >
-          <Text style={{ color: "white", fontSize: 20, marginRight: 30 }}>
+          <Text style={{ color: "white", fontSize: 20, marginRight: 50 }}>
             View Cart
           </Text>
-          <Text style={{ color: "white", fontSize: 20 }}>{totalUSD}</Text>
+          <Text style={{ color: "white", fontSize: 15, marginTop: 3 }}>{totalUSD}</Text>
         </TouchableOpacity>
       ) : (
         <></>
