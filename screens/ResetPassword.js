@@ -24,8 +24,6 @@ export default function ResetPassword({ navigation }) {
     };
 
     const handleResetPassword = (email) => {
-        console.log("after validate");
-        console.log(email);
         let submitEmail = email.toString();
         auth.sendPasswordResetEmail(submitEmail).catch(error => alert(error.message));
     }

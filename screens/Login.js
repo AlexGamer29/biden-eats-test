@@ -44,15 +44,12 @@ export default function Login({ navigation }) {
     }
 
     const handleLogin = (email, password) => {
-        console.log("after validate");
-        console.log(email + password);
         let submitEmail = email.toString();
         let submitPassword = password.toString();
         auth
             .signInWithEmailAndPassword(submitEmail, submitPassword)
             .then(userCredentials => {
                 const user = userCredentials.user;
-                console.log("Login Success" + user.email + user.password);
             })
             .catch(error => alert(error.message));
     }

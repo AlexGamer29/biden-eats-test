@@ -41,8 +41,6 @@ export default function Register({ navigation }) {
     }
 
     const handleRegister = (email, password) => {
-        console.log("after validate");
-        console.log(email + password);
         let submitEmail = email.toString();
         let submitPassword = password.toString();
         auth
